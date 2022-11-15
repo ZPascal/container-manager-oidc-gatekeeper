@@ -1,6 +1,6 @@
 # Container Manager OIDC Gatekeeper
 
-OIDC proxy container to establish a connection to an application via an OIDC Proxy based on [gatekeeper](https://github.com/gogatekeeper/gatekeeper) proxy and the container process overlay [container-manager](https://github.com/ZPascal/container-manager)
+OIDC proxy container to establish a connection to an application via an OIDC Proxy based on the [gatekeeper](https://github.com/gogatekeeper/gatekeeper) proxy and the container process overlay [container-manager](https://github.com/ZPascal/container-manager)
 
 The following container was created by a replacement of the [louketo-proxy](https://github.com/louketo/louketo-proxy) with the purpose to establish a connection to an internal K8s app via OIDC over the external network.
 
