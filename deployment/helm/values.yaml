@@ -1,0 +1,21 @@
+basic:
+  name: dashboard-proxy
+  namespace:
+  storage_size: 5
+  domain:
+
+docker:
+  image: z9pascal/container-manager-oidc-gatekeeper
+  tag: 1.0.0-latest
+
+secret:
+  LOGGING_LOKI_PASSWORD:
+  OIDC_CLIENT_SECRET:
+  OIDC_ENCRYPTION_KEY:
+
+config:
+  OIDC_DISCOVERY_URL:
+  OIDC_CLIENT_ID: kubernetes
+  OIDC_LISTEN_URL: 0.0.0.0:3000
+  OIDC_REDIRECTION_KEY:
+  OIDC_UPSTREAM_URL: https://kubernetes-dashboard

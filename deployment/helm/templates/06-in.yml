@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Values.basic.name }}-in"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/issuer: "letsencrypt-{{ .Values.basic.namespace }}"
+  namespace: "{{ .Values.basic.namespace }}"
+spec:
+  tls:
+    - hosts:
+        - "{{ .Values.basic.domain }}"
+      secretName: "{{ .Values.basic.name }}-tls"
+  rules:
+    - host: "{{ .Values.basic.domain}}"
+      http:
+        paths:
+        - pathType: Prefix
+          path: /
+          backend:
+            service:
+              name: "{{ .Values.basic.name }}-sv"
+              port:
+                number: 3000

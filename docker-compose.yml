@@ -1,0 +1,16 @@
+version: '3'
+services:
+  proxy:
+    image: z9pascal/container-manager-oidc-gatekeeper
+    environment:
+      OIDC_ISSUER_URL: ""
+      OIDC_CLIENT_ID: "kubernetes"
+      OIDC_CLIENT_SECRET: ""
+      OIDC_LISTEN_URL: "0.0.0.0:3000"
+      OIDC_REDIRECT_URL: ""
+      OIDC_UPSTREAM_URL: "https://kubernetes-dashboard"
+    restart: always
+    volumes:
+      - /storage:/storage
+    ports:
+      - "3000:3000"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: "{{ .Values.basic.name }}-sc"
+  namespace: "{{ .Values.basic.namespace }}"
+stringData:
+  LOGGING_LOKI_PASSWORD: "{{ .Values.secret.LOGGING_LOKI_PASSWORD }}"
+  OIDC_CLIENT_SECRET: "{{ .Values.secret.OIDC_CLIENT_SECRET }}"
+  OIDC_ENCRYPTION_KEY: "{{ .Values.secret.OIDC_ENCRYPTION_KEY }}"

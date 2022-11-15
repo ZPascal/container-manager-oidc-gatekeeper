@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.basic.name }}-de"
+  labels:
+    app.kubernetes.io/name: "{{ .Values.basic.name }}"
+  namespace: "{{ .Values.basic.namespace }}"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "{{ .Values.basic.name }}"
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: "{{ .Values.basic.name }}"
+    spec:
+      containers:
+        - name: "{{ .Values.basic.name }}"
+          image: "{{ .Values.docker.image }}:{{ .Values.docker.tag }}"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          securityContext:
+            runAsUser: 500
+          env:
+            - name: LOGGING_LOKI_HOST
+              value: "https://144.91.86.56:9443/loki/api/v1/push"
+            - name: LOGGING_LOKI_USERNAME
+              value: "loki"
+            - name: LOGGING_LOKI_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.basic.name }}-sc"
+                  key: LOGGING_LOKI_PASSWORD
+            - name: OIDC_ISSUER_URL
+              value: "{{ .Values.config.OIDC_ISSUER_URL }}"
+            - name: OIDC_CLIENT_ID
+              value: "{{ .Values.config.OIDC_CLIENT_ID }}"
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.basic.name }}-sc"
+                  key: OIDC_CLIENT_SECRET
+            - name: OIDC_LISTEN_URL
+              value: "{{ .Values.config.OIDC_LISTEN_URL }}"
+            - name: OIDC_REDIRECT_URL
+              value: "{{ .Values.config.OIDC_REDIRECT_URL }}"
+            - name: OIDC_UPSTREAM_URL
+              value: "{{ .Values.config.OIDC_UPSTREAM_URL }}"
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /storage
+              name: storage
+              readOnly: false
+      imagePullSecrets:
+        - name: "docker-registry-{{ .Values.basic.namespace }}-sc"
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: "gluster-{{ .Values.basic.name }}-{{ .Values.basic.namespace }}-pvc"
+      securityContext:
+        fsGroup: 500
