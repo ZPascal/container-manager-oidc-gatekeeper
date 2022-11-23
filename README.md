@@ -12,27 +12,28 @@ The Container Manager OIDC Gatekeeper is based on the [gatekeeper](https://githu
 #### Docker
 ```
 docker pull z9pascal/container-manager-oidc-gatekeeper:1.0.0-latest
-docker run -e OIDC_ISSUER_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.0.0-latest
+docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.0.0-latest
 ```
 
 #### Dev setup
 After you modified the corresponding container with your changes, you can start the build and run process with the [docker-compose.yml](docker-compose.yml) file e.g. `docker-compose up -d` or you can use the following commands to start the build and run process for the development support manual.
 ```
 docker build . -t container-manager-oidc-gatekeeper
-docker run -e OIDC_ISSUER_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 container-manager-oidc-gatekeeper
+docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 container-manager-oidc-gatekeeper
 ```
 
 ### Configuration
 You set up all related configuration parameters like the OIDC proxy credentials and the configuration parameters via environment variables. You can check out the corresponding values and description of the values inside the following table.
 
-| Environment variable |                     Description                     |        Example values        |
-|:--------------------:|:---------------------------------------------------:|:----------------------------:|
-|   OIDC_ISSUER_URL    |  Describe the issuer url of the OIDC system/ realm  |             xxx              |
-|    OIDC_CLIENT_ID    |      Describe the client id of the OIDC client      |             xxx              |
-|  OIDC_CLIENT_SECRET  |    Describe the client secret of the OIDC client    |             xxx              |
-|   OIDC_LISTEN_URL    |      Describe the listen url of the OIDC proxy      |         0.0.0.0:3000         |
-|  OIDC_REDIRECT_URL   | Describe the redirect url of the OIDC system/ realm |             xxx              |
-|  OIDC_UPSTREAM_URL   |     Describe the upstream url of the OIDC proxy     | https://kubernetes-dashboard |
+| Environment variable |                     Description                      |        Example values        |
+|:--------------------:|:----------------------------------------------------:|:----------------------------:|
+|  OIDC_DISCOVERY_URL  | Describe the discovery url of the OIDC system/ realm |             xxx              |
+|    OIDC_CLIENT_ID    |      Describe the client id of the OIDC client       |             xxx              |
+|  OIDC_CLIENT_SECRET  |    Describe the client secret of the OIDC client     |             xxx              |
+|   OIDC_LISTEN_URL    |      Describe the listen url of the OIDC proxy       |         0.0.0.0:3000         |
+| OIDC_ENCRYPTION_KEY  |       Describe the OIDC session encryption key       |             xxx              |
+|  OIDC_REDIRECT_URL   | Describe the redirect url of the OIDC system/ realm  |             xxx              |
+|  OIDC_UPSTREAM_URL   |     Describe the upstream url of the OIDC proxy      | https://kubernetes-dashboard |
 
 ## Contribution
 
