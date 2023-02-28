@@ -25,7 +25,7 @@ if os.path.exists(f"{utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"):
         os.remove(f"{utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env2")
 
     cmd = (
-        f"/usr/bin/env | sed -e 's/=/=\"/' -e 's/$/\"/' | /usr/bin/sort | "
+        "/usr/bin/env | sed -e 's/=/=\"/' -e 's/$/\"/' | /usr/bin/sort | "
         f"/bin/egrep -v 'HOSTNAME|SHLVL|HOME|TERM|PWD' > {utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env2"
     )
     rs = subprocess.Popen(
@@ -51,7 +51,7 @@ if os.path.exists(f"{utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"):
     else:
         cmd = (
             "/usr/bin/env | sed -e 's/=/=\"/' -e 's/$/\"/' | /usr/bin/sort | /bin/egrep -v "
-            "'HOSTNAME|SHLVL|HOME|TERM|PWD' > {utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"
+            f"'HOSTNAME|SHLVL|HOME|TERM|PWD' > {utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"
         )
         rs = subprocess.Popen(
             cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
@@ -65,7 +65,7 @@ if os.path.exists(f"{utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"):
         os.chmod(utils.get_env_variable("IMAGE_CONFIG_DIR"), 0o555)
 else:
     cmd = (
-        f"/usr/bin/env | sed -e 's/=/=\"/' -e 's/$/\"/' | /usr/bin/sort | "
+        "/usr/bin/env | sed -e 's/=/=\"/' -e 's/$/\"/' | /usr/bin/sort | "
         f"/bin/egrep -v 'HOSTNAME|SHLVL|HOME|TERM|PWD' > {utils.get_env_variable('IMAGE_CONFIG_DIR')}{os.sep}env"
     )
     rs = subprocess.Popen(

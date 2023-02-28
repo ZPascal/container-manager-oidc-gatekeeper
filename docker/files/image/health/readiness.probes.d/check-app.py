@@ -5,19 +5,32 @@ import os
 import sys
 import subprocess
 
-spec = importlib.util.spec_from_file_location("module.name", f"{os.environ.get('IMAGE_BASE_DIR')}{os.sep}utils.py")
+spec = importlib.util.spec_from_file_location(
+    "module.name", f"{os.environ.get('IMAGE_BASE_DIR')}{os.sep}utils.py"
+)
 utils = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(utils)
 
 result_local = utils.is_supervisor_process_running("app")
 
 if result_local == 0:
-    sys.stdout.write(f"Trying to call main page at {utils.get_env_variable('OIDC_LISTEN_URL')}/oauth/health;")
+    sys.stdout.write(
+        f"Trying to call main page at {utils.get_env_variable('OIDC_LISTEN_URL')}/oauth/health;"
+    )
 
-    command = ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-               f"{utils.get_env_variable('OIDC_LISTEN_URL')}/oauth/health"]
+    command = [
+        "curl",
+        "-s",
+        "-o",
+        "/dev/null",
+        "-w",
+        "%{http_code}",
+        f"{utils.get_env_variable('OIDC_LISTEN_URL')}/oauth/health",
+    ]
 
-    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+    result = subprocess.run(
+        command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True
+    )
 
     if result != 0:
         sys.stderr.write("Main page didn't respond!;")
