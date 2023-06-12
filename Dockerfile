@@ -46,7 +46,7 @@ ENV APP_NAME="gatekeeper" \
     IMAGE_SECRETS_DIR="/image/secrets" \
     IMAGE_SETUP_RUNALWAYS_DIR="/image/setup/run.always" \
     IMAGE_SETUP_RUNONCE_DIR="/image/setup/run.once" \
-    IMAGE_SUPERVISOR_DIR="/image/supervisor" \
+    IMAGE_SUPERVISOR_DIR="/image/supervisord" \
     LOGGING_REDIS_HOST="" \
     LOGGING_REDIS_PASSWORD="" \
     PROCESS_PID_DIR="/tmp" \
@@ -73,7 +73,7 @@ RUN addgroup -S -g 500 kubernetes && \
     apk --no-cache update && \
     apk --no-cache upgrade && \
     apk --no-cache add supervisor filebeat@edge-testing tzdata logrotate rsync curl py3-pip ca-certificates libc6-compat && \
-    pip install crontab && \
+    pip install crontab supervisor requests && \
     chown -R kubernetes:kubernetes $IMAGE_BASE_DIR && \
     find $IMAGE_BASE_DIR -name "*.py" -exec chmod +x "{}" ';' && \
     chmod +x /run.py && \
