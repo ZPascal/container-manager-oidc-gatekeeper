@@ -1,14 +1,16 @@
-FROM alpine:3.17
+FROM alpine:3.18
 MAINTAINER Pascal Zimmermann <ZPascal>
 
 LABEL application="Alpine Linux (with the forked OIDC Gatekeeper)" \
       description="Base Linux Container Image for Gatekeeper Proxy" \
-      version="1.1.0" \
+      version="1.2.0" \
       lastUpdatedBy="Pascal Zimmermann" \
-      lastUpdatedOn="2023-03-30"
+      lastUpdatedOn="2023-06-12"
+
+ARG FILEBEAT_VERSION="8.8.1"
 
 ENV APP_NAME="gatekeeper" \
-    APP_VERSION="2.3.0" \
+    APP_VERSION="2.5.0" \
     GOOS="linux" \
     GOARCH="amd64" \
     OIDC_DISCOVERY_URL="" \
@@ -18,8 +20,8 @@ ENV APP_NAME="gatekeeper" \
     OIDC_ENCRYPTION_KEY="" \
     OIDC_REDIRECTION_KEY="" \
     OIDC_UPSTREAM_URL="" \
-    IMAGE_NAME="alpine-3.17-gatekeeper" \
-    IMAGE_VERSION="1.1.0" \
+    IMAGE_NAME="alpine-3.18-gatekeeper" \
+    IMAGE_VERSION="1.2.0" \
     IMAGE_APP_DIR="/image/app" \
     IMAGE_BACKUP_CRON="2 1 * * *" \
     IMAGE_BACKUP_DIR="/image/backup" \
@@ -72,7 +74,12 @@ RUN addgroup -S -g 500 kubernetes && \
     echo "@edge-community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk --no-cache update && \
     apk --no-cache upgrade && \
-    apk --no-cache add supervisor filebeat@edge-testing tzdata logrotate rsync curl py3-pip ca-certificates libc6-compat && \
+    apk --no-cache add tzdata logrotate rsync curl py3-pip ca-certificates libc6-compat wget && \
+    wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz  && \
+    tar xzvf filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz && \
+    mv filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat /usr/bin/filebeat && \
+    rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 && \
+    rm filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz && \
     pip install crontab supervisor requests && \
     chown -R kubernetes:kubernetes $IMAGE_BASE_DIR && \
     find $IMAGE_BASE_DIR -name "*.py" -exec chmod +x "{}" ';' && \
