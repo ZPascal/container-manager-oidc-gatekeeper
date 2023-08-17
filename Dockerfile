@@ -3,14 +3,14 @@ MAINTAINER Pascal Zimmermann <ZPascal>
 
 LABEL application="Alpine Linux (with the forked OIDC Gatekeeper)" \
       description="Base Linux Container Image for Gatekeeper Proxy" \
-      version="1.3.0" \
+      version="1.3.1" \
       lastUpdatedBy="Pascal Zimmermann" \
-      lastUpdatedOn="2023-07-04"
+      lastUpdatedOn="2023-08-17"
 
-ARG FILEBEAT_VERSION="8.8.1"
+ARG FILEBEAT_VERSION="8.9.1"
 
 ENV APP_NAME="gatekeeper" \
-    APP_VERSION="2.6.0" \
+    APP_VERSION="2.6.1" \
     GOOS="linux" \
     GOARCH="amd64" \
     OIDC_DISCOVERY_URL="" \
@@ -21,7 +21,7 @@ ENV APP_NAME="gatekeeper" \
     OIDC_REDIRECTION_KEY="" \
     OIDC_UPSTREAM_URL="" \
     IMAGE_NAME="alpine-3.18-gatekeeper" \
-    IMAGE_VERSION="1.2.0" \
+    IMAGE_VERSION="1.3.1" \
     IMAGE_APP_DIR="/image/app" \
     IMAGE_BACKUP_CRON="2 1 * * *" \
     IMAGE_BACKUP_DIR="/image/backup" \
