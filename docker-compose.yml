@@ -1,7 +1,7 @@
 version: '3'
 services:
   proxy:
-    image: z9pascal/container-manager-oidc-gatekeeper:1.6.0-latest
+    image: z9pascal/container-manager-oidc-gatekeeper:1.7.0-latest
     environment:
       OIDC_DISCOVERY_URL: ""
       OIDC_CLIENT_ID: "kubernetes"
