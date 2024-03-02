@@ -80,6 +80,7 @@ RUN addgroup -S -g 500 kubernetes && \
     mv filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat /usr/bin/filebeat && \
     rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 && \
     rm filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz && \
+    rm /usr/lib/python3.11/EXTERNALLY-MANAGED && \
     pip install crontab supervisor requests && \
     chown -R kubernetes:kubernetes $IMAGE_BASE_DIR && \
     find $IMAGE_BASE_DIR -name "*.py" -exec chmod +x "{}" ';' && \
