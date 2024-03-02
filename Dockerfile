@@ -1,16 +1,16 @@
-FROM alpine:3.18
+FROM alpine:3.19
 MAINTAINER Pascal Zimmermann <ZPascal>
 
 LABEL application="Alpine Linux (with the forked OIDC Gatekeeper)" \
       description="Base Linux Container Image for Gatekeeper Proxy" \
-      version="1.7.0" \
+      version="1.7.1" \
       lastUpdatedBy="Pascal Zimmermann" \
-      lastUpdatedOn="2023-11-19"
+      lastUpdatedOn="2024-03-02"
 
-ARG FILEBEAT_VERSION="8.11.1"
+ARG FILEBEAT_VERSION="8.12.2"
 
 ENV APP_NAME="gatekeeper" \
-    APP_VERSION="2.9.0" \
+    APP_VERSION="2.9.5" \
     GOOS="linux" \
     GOARCH="amd64" \
     OIDC_DISCOVERY_URL="" \
@@ -20,8 +20,8 @@ ENV APP_NAME="gatekeeper" \
     OIDC_ENCRYPTION_KEY="" \
     OIDC_REDIRECTION_KEY="" \
     OIDC_UPSTREAM_URL="" \
-    IMAGE_NAME="alpine-3.18-gatekeeper" \
-    IMAGE_VERSION="1.7.0" \
+    IMAGE_NAME="alpine-3.19-gatekeeper" \
+    IMAGE_VERSION="1.7.1" \
     IMAGE_APP_DIR="/image/app" \
     IMAGE_BACKUP_CRON="2 1 * * *" \
     IMAGE_BACKUP_DIR="/image/backup" \
@@ -80,6 +80,7 @@ RUN addgroup -S -g 500 kubernetes && \
     mv filebeat-${FILEBEAT_VERSION}-linux-x86_64/filebeat /usr/bin/filebeat && \
     rm -rf filebeat-${FILEBEAT_VERSION}-linux-x86_64 && \
     rm filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz && \
+    rm /usr/lib/python3.11/EXTERNALLY-MANAGED && \
     pip install crontab supervisor requests && \
     chown -R kubernetes:kubernetes $IMAGE_BASE_DIR && \
     find $IMAGE_BASE_DIR -name "*.py" -exec chmod +x "{}" ';' && \
