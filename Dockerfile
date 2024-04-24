@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 MAINTAINER Pascal Zimmermann <ZPascal>
 
 LABEL application="Alpine Linux (with the forked OIDC Gatekeeper)" \
