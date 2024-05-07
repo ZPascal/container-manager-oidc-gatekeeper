@@ -6,7 +6,7 @@ basic:
 
 docker:
   image: z9pascal/container-manager-oidc-gatekeeper
-  tag: 1.8.0-latest
+  tag: 1.9.0-latest
 
 secret:
   LOGGING_LOKI_PASSWORD:
