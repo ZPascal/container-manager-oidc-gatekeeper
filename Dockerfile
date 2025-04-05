@@ -1,11 +1,11 @@
 FROM alpine:3.21
-MAINTAINER Pascal Zimmermann <ZPascal>
 
-LABEL application="Alpine Linux (with the forked OIDC Gatekeeper)" \
-      description="Base Linux Container Image for Gatekeeper Proxy" \
-      version="1.17.0" \
+LABEL org.opencontainers.image.title="Alpine Linux (with the forked OIDC Gatekeeper)" \
+      org.opencontainers.image.description="Base Linux Container Image for Gatekeeper Proxy" \
+      org.opencontainers.image.version="1.17.0" \
+      org.opencontainers.image.authors="Pascal Zimmermann <pascal.zimmermann@theiotstudio.com>" \
       lastUpdatedBy="Pascal Zimmermann" \
-      lastUpdatedOn="2025-04-05"
+      lastUpdatedOn="2025-04-05" \
 
 ARG FILEBEAT_VERSION="8.17.4"
 
