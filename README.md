@@ -11,8 +11,8 @@ The Container Manager OIDC Gatekeeper is based on the [gatekeeper](https://githu
 ### Installation and startup
 #### Docker
 ```
-docker pull z9pascal/container-manager-oidc-gatekeeper:1.20.0-latest
-docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.20.0-latest
+docker pull z9pascal/container-manager-oidc-gatekeeper:1.21.0-latest
+docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.21.0-latest
 ```
 
 #### Dev setup
