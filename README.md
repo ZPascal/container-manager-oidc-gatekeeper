@@ -11,8 +11,8 @@ The Container Manager OIDC Gatekeeper is based on the [gatekeeper](https://githu
 ### Installation and startup
 #### Docker
 ```
-docker pull z9pascal/container-manager-oidc-gatekeeper:1.21.0-latest
-docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.21.0-latest
+docker pull z9pascal/container-manager-oidc-gatekeeper:1.22.0-latest
+docker run -e OIDC_DISCOVERY_URL="" -e OIDC_CLIENT_ID="" -e OIDC_CLIENT_SECRET="" -e OIDC_LISTEN_URL="0.0.0.0:3000" -e OIDC_ENCRYPTION_KEY="" -e OIDC_REDIRECT_URL="" -e OIDC_UPSTREAM_URL="https://kubernetes-dashboard" -v /storage:/storage -p 3000:3000 z9pascal/container-manager-oidc-gatekeeper:1.22.0-latest
 ```
 
 #### Dev setup
@@ -40,7 +40,7 @@ You set up all related configuration parameters like the OIDC proxy credentials 
 If you would like to contribute, have an improvement request, or want to make a change inside the code, please open a pull request and write unit tests.
 
 ## Support
-If you need support, or you encounter a bug, please don't hesitate to open an issue.
+If you need support or you encounter a bug, please don't hesitate to open an issue.
 
 ## Donations
 If you want to support my work, I ask you to take an unusual action inside the open source community. Donate the money to a non-profit organization like Doctors Without Borders or the Children's Cancer Aid. I will continue to build tools because I like them, and I am passionate about developing and sharing applications.
