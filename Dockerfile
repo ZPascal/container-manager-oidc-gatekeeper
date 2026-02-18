@@ -2,15 +2,15 @@ FROM alpine:3.23
 
 LABEL org.opencontainers.image.title="Alpine Linux (with the forked OIDC Gatekeeper)" \
       org.opencontainers.image.description="Base Linux Container Image for Gatekeeper Proxy" \
-      org.opencontainers.image.version="1.22.0" \
+      org.opencontainers.image.version="1.23.0" \
       org.opencontainers.image.authors="Pascal Zimmermann <pascal.zimmermann@theiotstudio.com>" \
       lastUpdatedBy="Pascal Zimmermann" \
-      lastUpdatedOn="2025-12-10"
+      lastUpdatedOn="2026-02-18"
 
-ARG FILEBEAT_VERSION="9.2.2"
+ARG FILEBEAT_VERSION="9.3.0"
 
 ENV APP_NAME="gatekeeper" \
-    APP_VERSION="4.4.0" \
+    APP_VERSION="4.6.0" \
     GOOS="linux" \
     GOARCH="amd64" \
     OIDC_DISCOVERY_URL="" \
@@ -21,7 +21,7 @@ ENV APP_NAME="gatekeeper" \
     OIDC_REDIRECTION_KEY="" \
     OIDC_UPSTREAM_URL="" \
     IMAGE_NAME="alpine-3.22-gatekeeper" \
-    IMAGE_VERSION="1.22.0" \
+    IMAGE_VERSION="1.23.0" \
     IMAGE_APP_DIR="/image/app" \
     IMAGE_BACKUP_CRON="2 1 * * *" \
     IMAGE_BACKUP_DIR="/image/backup" \
