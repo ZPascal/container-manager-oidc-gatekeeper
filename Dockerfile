@@ -2,7 +2,7 @@ FROM alpine:3.23
 
 LABEL org.opencontainers.image.title="Alpine Linux (with the forked OIDC Gatekeeper)" \
       org.opencontainers.image.description="Base Linux Container Image for Gatekeeper Proxy" \
-      org.opencontainers.image.version="1.23.1" \
+      org.opencontainers.image.version="1.23.0" \
       org.opencontainers.image.authors="Pascal Zimmermann <pascal.zimmermann@theiotstudio.com>" \
       lastUpdatedBy="Pascal Zimmermann" \
       lastUpdatedOn="2026-02-18"
