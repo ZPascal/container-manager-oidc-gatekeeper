@@ -1,4 +1,4 @@
-FROM alpine:3.23
+FROM alpine:3.24
 
 LABEL org.opencontainers.image.title="Alpine Linux (with the forked OIDC Gatekeeper)" \
       org.opencontainers.image.description="Base Linux Container Image for Gatekeeper Proxy" \
